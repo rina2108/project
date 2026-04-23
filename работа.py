@@ -1,55 +1,12 @@
+from delete_movie_func import delete_movie
+from mark_watched_func import mark_watched
+from show_movies_func import show_movies
+from add_movie_func import add_movie
+
 # =========================
 # ХРАНЕНИЕ ФИЛЬМОВ
 # =========================
 movies = []  # список фильмов
-
-# =========================
-# 1. ПОКАЗАТЬ СПИСОК
-# =========================
-def show_movies():
-    if not movies:
-        print("\nСписок пуст\n")
-    else:
-        print("\nСписок фильмов:")
-        for i, movie in enumerate(movies):
-            status = "✔" if movie["watched"] else "✘"
-            print(f"{i + 1}. [{status}] {movie['title']}")
-        print()
-
-# =========================
-# 2. ДОБАВИТЬ ФИЛЬМ
-# =========================
-def add_movie():
-    title = input("Введите название фильма: ")
-    movies.append({
-        "title": title,
-        "watched": False
-    })
-    print("Фильм добавлен\n")
-
-# =========================
-# 3. ОТМЕТИТЬ ПРОСМОТРЕННЫМ
-# =========================
-def mark_watched():
-    show_movies()
-    try:
-        num = int(input("Номер просмотренного фильма: "))
-        movies[num - 1]["watched"] = True
-        print("Отмечено как просмотрено\n")
-    except:
-        print("Ошибка\n")
-
-# =========================
-# 4. УДАЛИТЬ ФИЛЬМ
-# =========================
-def delete_movie():
-    show_movies()
-    try:
-        num = int(input("Номер фильма для удаления: "))
-        movies.pop(num - 1)
-        print("Удалено\n")
-    except:
-        print("Ошибка\n")
 
 # =========================
 # ГЛАВНОЕ МЕНЮ
@@ -66,13 +23,13 @@ def main():
         choice = input("Выбери действие: ")
 
         if choice == "1":
-            show_movies()
+            show_movies(movies)
         elif choice == "2":
-            add_movie()
+            add_movie(movies)
         elif choice == "3":
-            mark_watched()
+            mark_watched(movies)
         elif choice == "4":
-            delete_movie()
+            delete_movie(movies)
         elif choice == "5":
             print("Пока!")
             break
